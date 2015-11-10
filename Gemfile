@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rename'
 
 gem 'rails', '4.2.4'
 gem 'sqlite3'
