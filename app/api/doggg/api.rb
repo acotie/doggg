@@ -8,16 +8,29 @@ class Doggg::API < Grape::API
 
   #mount Movie
 
-  resource :users do
-    post do
-      #TODO
+  #series
+  resource :series do
+    desc "returns all series"
+    get do
+      Series.all
     end
 
+    desc "return :id series"
+    params do
+      requires :id, type: Integer
+    end
+    get ':id' do
+      Series.find(params[:id])
+    end
+
+    desc "return :id series => movies"
+    get ':id/movies' do
+      Series.find(params[:id]).movies.all
+    end
   end
 
-
   resource :movies do
-    desc "returns all users"
+    desc "returns all Movies"
     get do
       Movie.all
     end
@@ -29,7 +42,6 @@ class Doggg::API < Grape::API
     get ':id' do
       Movie.find(params[:id])
     end
-
   end
 
 
